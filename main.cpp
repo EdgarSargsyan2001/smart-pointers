@@ -1,6 +1,6 @@
 #include <iostream>
-#include "shared_ptr.h"
-#include "unique_ptr.h"
+#include "shared_ptr.hpp"
+#include "unique_ptr.hpp"
 
 struct A
 {
@@ -23,10 +23,6 @@ int main()
 
     unique_ptr<A> p2(new A(2));
     p2 = std::move(p1);
-
-    int arr[] = {1, 2, 3, 4};
-    unique_ptr<int> arrPtr(arr);
-    std::cout << arrPtr[2] << '\n';
 
     // shared_ptr
 

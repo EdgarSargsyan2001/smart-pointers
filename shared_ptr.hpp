@@ -11,15 +11,15 @@ public:
     ~shared_ptr() noexcept;
 
     // copy operation
-    shared_ptr(const shared_ptr<T> &rhs) noexcept;
-    shared_ptr<T> &operator=(const shared_ptr<T> &rhs) noexcept;
+    shared_ptr(const shared_ptr<T> &rhs);
+    shared_ptr<T> &operator=(const shared_ptr<T> &rhs);
 
     //  move operation
     shared_ptr(shared_ptr<T> &&rhs) noexcept;
     shared_ptr<T> &operator=(shared_ptr<T> &&rhs) noexcept;
 
     // methods
-    void swap(shared_ptr<T> rhs);
+    void swap(shared_ptr<T> &rhs);
     int get_count() const;
 
     // operators
@@ -55,7 +55,7 @@ shared_ptr<T>::~shared_ptr() noexcept
 
 // copy operation
 template <typename T>
-shared_ptr<T>::shared_ptr(const shared_ptr<T> &rhs) noexcept
+shared_ptr<T>::shared_ptr(const shared_ptr<T> &rhs)
 {
     _ptr = rhs._ptr;
     _count = rhs._count;
@@ -63,7 +63,7 @@ shared_ptr<T>::shared_ptr(const shared_ptr<T> &rhs) noexcept
 }
 
 template <typename T>
-shared_ptr<T> &shared_ptr<T>::operator=(const shared_ptr<T> &rhs) noexcept
+shared_ptr<T> &shared_ptr<T>::operator=(const shared_ptr<T> &rhs)
 {
     if (this != &rhs)
     {
@@ -99,7 +99,7 @@ shared_ptr<T> &shared_ptr<T>::operator=(shared_ptr<T> &&rhs) noexcept
 
 // methods
 template <typename T>
-void shared_ptr<T>::swap(shared_ptr<T> rhs)
+void shared_ptr<T>::swap(shared_ptr<T> &rhs)
 {
     std::swap(_ptr, rhs._ptr);
     std::swap(_count, rhs._count);
